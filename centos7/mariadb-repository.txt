@@ -1,5 +1,5 @@
 [mariadb]
 name = MariaDB
-baseurl = https://espejito.fder.edu.uy/mariadb/yum/VERSION/rhel7-amd64
-gpgkey=https://espejito.fder.edu.uy/mariadb/yum/RPM-GPG-KEY-MariaDB
+baseurl = https://mirrors.bkns.vn/mariadb/yum/VERSION/rhel7-amd64
+gpgkey=https://mirrors.bkns.vn/mariadb/yum/RPM-GPG-KEY-MariaDB
 gpgcheck=1
