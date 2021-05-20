@@ -2,7 +2,7 @@
 
 yum install yum-utils epel-release http://rpms.remirepo.net/enterprise/remi-release-7.rpm httpd unzip wget curl htop -y
 
-hostname cp-testing-elastika.yachay.pe
+hostname $HOSTNAME
 
 systemctl stop NetworkManager
 
@@ -90,6 +90,9 @@ service csf start
 ## TODO: INSTALLATRON
 rpm -Uvh https://data.installatron.com/installatron-plugin-cpanel-latest.noarch.rpm
 
+/scripts/fixquotas
+
+repquota -a
 
 ## TODO: LITESPEED
 # This script looks at the user's environment, then fetches the appropriate installer for Litespeed.
@@ -260,5 +263,3 @@ exit 0
 }
   
 main "$@"
-
-reboot
