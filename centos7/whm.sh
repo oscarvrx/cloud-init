@@ -28,10 +28,6 @@ cp csf.conf /etc/csf/csf.conf
 
 csf –r && service lfd restart
 
-wget http://repo.cloudlinux.com/cloudlinux/sources/cln/cldeploy
-
-sh cldeploy
-
 rpm -qa | grep -i acronis
 
 
