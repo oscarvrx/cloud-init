@@ -1,35 +1,38 @@
 #!/bin/sh
+{
+  yum install yum-utils epel-release http://rpms.remirepo.net/enterprise/remi-release-7.rpm httpd unzip wget curl htop -y
 
-yum install yum-utils epel-release http://rpms.remirepo.net/enterprise/remi-release-7.rpm httpd unzip wget curl htop -y
+  hostname $SUBDOMAIN
 
-hostname $SUBDOMAIN
+  systemctl stop NetworkManager
 
-systemctl stop NetworkManager
+  systemctl disable NetworkManager
 
-systemctl disable NetworkManager
+  yum install perl -y
 
-yum install perl -y
+  curl -o latest -L https://securedownloads.cpanel.net/latest && sh latest
 
-curl -o latest -L https://securedownloads.cpanel.net/latest && sh latest
+  wget https://download.configserver.com/csf.tgz
 
-wget https://download.configserver.com/csf.tgz
+  tar -xzf csf.tgz
 
-tar -xzf csf.tgz
+  cd csf
 
-cd csf
+  sh install.cpanel.sh
 
-sh install.cpanel.sh
+  rm /etc/csf/csf.conf
 
-rm /etc/csf/csf.conf
+  wget https://raw.githubusercontent.com/oscarvrx/cloud-init/master/centos/csf.conf
 
-wget https://raw.githubusercontent.com/oscarvrx/cloud-init/master/centos/csf.conf
+  cp csf.conf /etc/csf/csf.conf
 
-cp csf.conf /etc/csf/csf.conf
+  csf –r && service lfd restart
 
-csf –r && service lfd restart
+  rpm -qa | grep -i acronis
 
-rpm -qa | grep -i acronis
+} 2>&1 | tee -a /var/log/cpanel.process.log
 
+echo "[DEBUG] Starting ACRONIS installer" >> /var/log/cpanel.process.log
 
 REPO_BASE="https://download.acronis.com/ci/cpanel/stable/acronis-cpanel-stable"
 
@@ -72,7 +75,8 @@ EOF
 
 yum install -y acronis-backup-cpanel
 
-
+echo "[DEBUG] Finished ACRONIS installer" >> /var/log/cpanel.process.log
+echo "[DEBUG] Configuring CSF" >> /var/log/cpanel.process.log
 rm /etc/csf/csf.allow
 
 wget https://raw.githubusercontent.com/oscarvrx/cloud-init/master/centos/csf.allow
@@ -89,7 +93,9 @@ rpm -Uvh https://data.installatron.com/installatron-plugin-cpanel-latest.noarch.
 /scripts/fixquotas
 
 repquota -a
+echo "[DEBUG] Finished Quotas eanbled" >> /var/log/cpanel.process.log
 
+echo "[DEBUG] Starting LITESPEED installer" >> /var/log/cpanel.process.log
 ## TODO: LITESPEED
 # This script looks at the user's environment, then fetches the appropriate installer for Litespeed.
 
@@ -259,3 +265,5 @@ exit 0
 }
   
 main "$@"
+
+echo "[DEBUG] Finished LITESPEED installer" >> /var/log/cpanel.process.log
