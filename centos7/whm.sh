@@ -2,7 +2,7 @@
 
 yum install yum-utils epel-release http://rpms.remirepo.net/enterprise/remi-release-7.rpm httpd unzip wget curl htop -y
 
-hostname $HOSTNAME
+hostname $SUBDOMAIN
 
 systemctl stop NetworkManager
 
