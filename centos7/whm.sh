@@ -1,5 +1,10 @@
 #!/bin/sh
 {
+  if [ -f .env ]; then
+    # Carga las variable del .env
+    export $(cat .env | grep -v '#' | awk '/=/ {print $1}')
+  fi
+
   yum install yum-utils epel-release http://rpms.remirepo.net/enterprise/remi-release-7.rpm httpd unzip wget curl htop -y
 
   hostnamectl set-hostname $SUBDOMAIN
