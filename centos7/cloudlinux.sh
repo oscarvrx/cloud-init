@@ -1,5 +1,7 @@
 #!/bin/sh
 
+cd /etc/yachay/cloud-init
+
 {
   if [ -f .env ]; then
       # Carga las variable del .env
