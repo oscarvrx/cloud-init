@@ -2,7 +2,11 @@
 {
   yum install yum-utils epel-release http://rpms.remirepo.net/enterprise/remi-release-7.rpm httpd unzip wget curl htop -y
 
-  hostname $SUBDOMAIN
+  hostnamectl set-hostname $SUBDOMAIN
+
+  echo "[DEBUG] Hostname $(hostname)" >> /var/log/cpanel.process.log
+
+  hostname
 
   systemctl stop NetworkManager
 
