@@ -16,7 +16,7 @@ for line in fileinput.input( fileToSearch ):
     tempFile.write( line.replace( textToSearch, textToReplace ) )
 tempFile.close()
 
-nginxFile = '/etc/apache2/sites-available/' + config['DOMAIN']
+nginxFile = '/etc/apache2/sites-available/' + config['DOMAIN'] + '.conf'
 # nginxFile = 'other/default'
 
 shutil.copy(fileToSearch, nginxFile)
