@@ -20,9 +20,3 @@ nginxFile = '/etc/httpd/conf.d/' + config['DOMAIN'] + '.conf'
 # nginxFile = 'other/default'
 
 shutil.copy(fileToSearch, nginxFile)
-
-cronFile = '/var/spool/cron/crontabs/root'
-# cronFile = 'other/root'
-
-with open(cronFile, 'a') as f:
-    f.write('\n0 12 * * * /usr/bin/certbot renew --quiet')
