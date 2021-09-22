@@ -1,0 +1,108 @@
+###############################################################################
+# Copyright 2006-2018, Way to the Web Limited
+# URL: http://www.configserver.com
+# Email: sales@waytotheweb.com
+###############################################################################
+# The following IP addresses will be allowed through iptables.
+# One IP address per line.
+# CIDR addressing allowed with a quaded IP (e.g. 192.168.254.0/24).
+# Only list IP addresses, not domain names (they will be ignored)
+#
+# Advanced port+ip filtering allowed with the following format
+# tcp/udp|in/out|s/d=port,port,...|s/d=ip
+# See readme.txt for more information
+#
+# Note: IP addressess listed in this file will NOT be ignored by lfd, so they
+# can still be blocked. If you do not want lfd to block an IP address you must
+# add it to csf.ignore
+
+Include /etc/csf/cpanel.comodo.allow
+Include /etc/csf/cpanel.allow
+209.45.68.70 # csf SSH installation/upgrade IP address - Tue Jun 15 10:42:09 2021
+# Acceso Administracion
+tcp|in|d=22|s=209.45.68.64/28
+tcp|in|d=22|s=161.132.2.0/24
+tcp|in|d=2086|s=161.132.2.0/24
+tcp|in|d=2086|s=209.45.68.64/28
+tcp|in|d=2087|s=161.132.2.0/24
+tcp|in|d=2087|s=209.45.68.64/28
+#Soporte Cpanel
+tcp|in|d=22|s=184.94.197.2
+tcp|in|d=22|s=184.94.197.3
+tcp|in|d=22|s=184.94.197.4
+tcp|in|d=22|s=184.94.197.5
+tcp|in|d=22|s=184.94.197.6
+tcp|in|d=22|s=208.74.123.98
+tcp|in|d=22|s=208.74.125.2
+tcp|in|d=22|s=208.74.121.100
+tcp|in|d=22|s=208.74.121.101
+tcp|in|d=22|s=208.74.121.102
+tcp|in|d=22|s=208.74.121.103
+tcp|in|d=22|s=161.132.8.143
+tcp|in|d=22|s=209.45.69.112
+tcp|in|d=2086|s=184.94.197.2
+tcp|in|d=2086|s=184.94.197.3
+tcp|in|d=2086|s=184.94.197.4
+tcp|in|d=2086|s=184.94.197.5
+tcp|in|d=2086|s=184.94.197.6
+tcp|in|d=2086|s=208.74.123.98
+tcp|in|d=2086|s=208.74.125.2
+tcp|in|d=2086|s=208.74.121.100
+tcp|in|d=2086|s=208.74.121.101
+tcp|in|d=2086|s=208.74.121.102
+tcp|in|d=2086|s=208.74.121.103
+tcp|in|d=2086|s=161.132.8.143
+tcp|in|d=2086|s=209.45.69.112
+tcp|in|d=2087|s=184.94.197.2
+tcp|in|d=2087|s=184.94.197.3
+tcp|in|d=2087|s=184.94.197.4
+tcp|in|d=2087|s=184.94.197.5
+tcp|in|d=2087|s=184.94.197.6
+tcp|in|d=2087|s=208.74.123.98
+tcp|in|d=2087|s=208.74.125.2
+tcp|in|d=2087|s=208.74.121.100
+tcp|in|d=2087|s=208.74.121.101
+tcp|in|d=2087|s=208.74.121.102
+tcp|in|d=2087|s=208.74.121.103
+tcp|in|d=2087|s=161.132.8.143
+tcp|in|d=2087|s=209.45.69.112
+#VPN SAC
+tcp|in|d=22|s=209.45.29.60
+#Munin
+161.132.7.130
+#Nagios
+161.132.1.147
+161.132.1.128
+#CORE-MASTER
+209.45.69.66
+#Servidores GoYachay
+tcp|in|d=2087|s=161.132.18.90
+#Vlan Backup
+172.20.20.0/23
+#Reglas Salida puertos acronis
+tcp|out|d=7787|d=0.0.0.0/0
+tcp|out|d=44445|d=0.0.0.0/0
+tcp|out|d=8443|d=0.0.0.0/0
+tcp|out|d=443|d=0.0.0.0/0
+##Altair - Rigel HAPROXY
+209.45.69.85
+161.132.19.141
+##
+209.45.87.145 # Manually allowed: 209.45.87.145 (PE/Peru/paron.yachay.pe) - Thu Jun 17 07:28:44 2021
+161.132.18.167 # Manually allowed: 161.132.18.167 (PE/Peru/huaral.yachay.pe) - Thu Jun 17 07:35:12 2021
+172.20.20.227 # Manually allowed: 172.20.20.227 (-) - Mon Aug 16 10:45:29 2021
+172.20.20.228 # Manually allowed: 172.20.20.228 (-) - Mon Aug 16 10:45:32 2021
+104.248.44.154 # cPGuard - Tue Aug 17 12:31:50 2021
+168.119.180.141 # cPGuard - Tue Aug 17 12:31:51 2021
+94.237.29.205 # cPGuard - Tue Aug 17 12:31:51 2021
+37.97.190.233 # cPGuard - Tue Aug 17 12:31:51 2021
+72.14.186.130 # cPGuard - Tue Aug 17 12:31:52 2021
+188.116.8.88 # cPGuard - Tue Aug 17 12:31:52 2021
+45.77.35.77 # cPGuard - Tue Aug 17 12:31:52 2021
+94.130.24.31 # cPGuard - Tue Aug 17 12:31:52 2021
+37.97.189.139 # cPGuard - Tue Aug 17 12:31:53 2021
+172.20.20.136 # Manually allowed: 172.20.20.136 (-) - Tue Aug 17 14:45:19 2021
+172.20.21.183 # Manually allowed: 172.20.21.183 (-) - Wed Aug 25 12:45:59 2021
+95.141.39.131 # Manually allowed: 95.141.39.131 (IT/Italy/yupan.yachay.pe) - Thu Aug 26 22:42:53 2021
+161.132.46.135 # Manually allowed: 161.132.46.135 (PE/Peru/-) - Fri Aug 27 18:44:13 2021
+172.20.20.221 # Manually allowed: 172.20.20.221 (-) - Thu Sep  2 14:26:15 2021

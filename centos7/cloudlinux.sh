@@ -1,8 +1,7 @@
 #!/bin/sh
 
-cd /etc/yachay/cloud-init
-
 {
+
   if [ -f .env ]; then
       # Carga las variable del .env
       export $(cat .env | grep -v '#' | awk '/=/ {print $1}')
@@ -31,18 +30,6 @@ cd /etc/yachay/cloud-init
   yum install cagefs -y
 
   echo "[DEBUG] CageFs successfully installed" >> /var/log/cloudlinux.log
-
-  # Necesita de una la cualquier palabra que contenga numero 1 inicialmente
-  LIMIT=$(cat /etc/yachay/cloudlinux.cfg)
-  SUB="3"
-
-  if [[ "$LIMIT" != *"$SUB"* ]]; then
-    NUM=$((${LIMIT: -1} + 1))
-    echo "[DEBUG] Attempt number $NUM"
-  fi
-
-  echo $LIMIT$NUM > /etc/yachay/cloudlinux.cfg
-
 
 } 2>&1 | tee -a /var/log/cloudlinux.process.log
 

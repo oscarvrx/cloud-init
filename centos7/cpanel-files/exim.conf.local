@@ -1,0 +1,70 @@
+%RETRYBLOCK%
++secondarymx                    *                               F,4h,5m; G,16h,1h,1.5; F,4d,8h
+*                               *                               F,2h,15m; G,16h,1h,1.5; F,4d,8h
+@AUTH@
+
+@BEGINACL@
+
+@CONFIG@
+chunking_advertise_hosts = ""
+smtp_banner = "${primary_hostname} ESMTP Exim ${version_number}"
+recipients_max = 25
+recipients_max_reject = true
+
+@DIRECTOREND@
+
+@DIRECTORMIDDLE@
+
+@DIRECTORSTART@
+
+@ENDACL@
+
+@POSTMAILCOUNT@
+smart_route:
+driver = manualroute
+domains = !+local_domains
+transport = remote_smtp
+route_list = * "rigel.yachay.pe : altair.yachay.pe" no_randomize
+@PREDOTFORWARD@
+
+@PREFILTER@
+
+@PRELOCALUSER@
+
+@PRENOALIASDISCARD@
+
+@PREROUTERS@
+
+@PREVALIASNOSTAR@
+
+@PREVALIASSTAR@
+
+@PREVIRTUALUSER@
+
+@RETRYEND@
+
+@RETRYSTART@
+
+@REWRITE@
+
+@ROUTEREND@
+
+@ROUTERMIDDLE@
+
+@ROUTERSTART@
+derivacionespecial:
+driver = manualroute
+transport = remote_smtp
+route_data = ${lookup{$domain}lsearch{/etc/exim_rutassmtp}}
+
+#smart_route:
+#driver = manualroute
+#domains = !+local_domains
+#transport = remote_smtp
+#route_list = * "rigel.yachay.pe : altair.yachay.pe" no_randomize
+@TRANSPORTEND@
+
+@TRANSPORTMIDDLE@
+
+@TRANSPORTSTART@
+
