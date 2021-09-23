@@ -21,7 +21,7 @@
 
   echo "[DEBUG] Starts running the installer" >> /var/log/cloudlinux.log
 
-  sh cloudlinux.sh -k $LICENCE_CLOUDLINUX
+  sh cldeploy -k $LICENCE_CLOUDLINUX
 
   echo "[DEBUG] Cloudlinux successfully installed" >> /var/log/cloudlinux.log
 
