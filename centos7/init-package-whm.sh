@@ -19,7 +19,7 @@ do
   fi
 done
 
-if [ "$SUM" -le 1 ] || [ "$SUM" -ge 4 ];
+if [ "$SUM" -le 2 ] || [ "$SUM" -ge 4 ];
 then
     echo "[ERROR] Invalid domain or subdomain"
     exit 1
@@ -35,9 +35,9 @@ then
   exit 1
 fi
 
-echo "Enter your LiteSpeed Web Server license (TRIAL/you_key): "
+# echo "Enter your LiteSpeed Web Server license (TRIAL/you_key): "
 
-read LICENCE_LITESPEED
+# read LICENCE_LITESPEED
 
 # START SCRIPT INSTALL APPS
 
