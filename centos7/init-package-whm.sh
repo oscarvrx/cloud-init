@@ -4,36 +4,36 @@ echo "Enter domain or subdomain: "
 
 read SUBDOMAIN
 
-SUM=0
+# SUM=0
 
-EXPRESION="^[A-Za-z0-9]+$"
+# EXPRESION="^[A-Za-z0-9]+$"
 
-for i in $(echo $SUBDOMAIN | tr "." "\n")
-do
-  if [[ $i =~ $EXPRESION ]];
-  then
-    SUM=$(expr $SUM + 1)
-  else
-    echo "[ERROR] Invalid domain or subdomain"
-    exit 1
-  fi
-done
+# for i in $(echo $SUBDOMAIN | tr "." "\n")
+# do
+#   if [[ $i =~ $EXPRESION ]];
+#   then
+#     SUM=$(expr $SUM + 1)
+#   else
+#     echo "[ERROR] Invalid domain or subdomain"
+#     exit 1
+#   fi
+# done
 
-if [ "$SUM" -le 2 ] || [ "$SUM" -ge 4 ];
-then
-    echo "[ERROR] Invalid domain or subdomain"
-    exit 1
-fi
+# if [ "$SUM" -le 2 ] || [ "$SUM" -ge 4 ];
+# then
+#     echo "[ERROR] Invalid domain or subdomain"
+#     exit 1
+# fi
 
-echo "Enter your Cloudlinux license: "
+# echo "Enter your Cloudlinux license: "
 
-read LICENCE_CLOUDLINUX
+# read LICENCE_CLOUDLINUX
 
-if [[ "$LICENCE_CLOUDLINUX" != CL-* ]]
-then
-  echo "[ERROR] Invalid license"
-  exit 1
-fi
+# if [[ "$LICENCE_CLOUDLINUX" != CL-* ]]
+# then
+#   echo "[ERROR] Invalid license"
+#   exit 1
+# fi
 
 # echo "Enter your LiteSpeed Web Server license (TRIAL/you_key): "
 
