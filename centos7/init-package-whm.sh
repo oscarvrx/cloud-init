@@ -25,9 +25,9 @@ read SUBDOMAIN
 #     exit 1
 # fi
 
-# echo "Enter your Cloudlinux license: "
+echo "Enter your Cloudlinux license: "
 
-# read LICENCE_CLOUDLINUX
+read LICENCE_CLOUDLINUX
 
 # if [[ "$LICENCE_CLOUDLINUX" != CL-* ]]
 # then
@@ -57,7 +57,7 @@ wget https://raw.githubusercontent.com/oscarvrx/cloud-init/master/centos7/whm.sh
 
 chmod +x whm.sh
 
-sh whm.sh TRIAL
+# sh whm.sh TRIAL
 
 # echo -e "password1234\npassword1234" | passwd root
 
@@ -68,13 +68,13 @@ cloudlinux.sh
 
 chmod +x /etc/yachay/cloud-init/cloudlinux.sh
 
-sh cloudlinux.sh
+# sh cloudlinux.sh
 
 wget https://raw.githubusercontent.com/oscarvrx/cloud-init/master/centos7/
 config-yachay.sh
 
 chmod +x /etc/yachay/cloud-init/config-yachay.sh
 
-sh config-yachay.sh
+# sh config-yachay.sh
 
 reboot
