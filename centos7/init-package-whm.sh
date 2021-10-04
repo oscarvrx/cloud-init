@@ -63,15 +63,13 @@ chmod +x whm.sh
 
 echo "LICENCE_CLOUDLINUX=$LICENCE_CLOUDLINUX" >> .env
 
-wget https://raw.githubusercontent.com/oscarvrx/cloud-init/master/centos7/
-cloudlinux.sh
+wget https://raw.githubusercontent.com/oscarvrx/cloud-init/master/centos7/cloudlinux.sh
 
 chmod +x /etc/yachay/cloud-init/cloudlinux.sh
 
 # sh cloudlinux.sh
 
-wget https://raw.githubusercontent.com/oscarvrx/cloud-init/master/centos7/
-config-yachay.sh
+wget https://raw.githubusercontent.com/oscarvrx/cloud-init/master/centos7/config-yachay.sh
 
 chmod +x /etc/yachay/cloud-init/config-yachay.sh
 
