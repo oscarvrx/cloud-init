@@ -5,6 +5,8 @@ INSTALL_APP_ACRONIS=false
 INSTALL_APP_CLOUDLINUX=false
 INSTALL_APP_CAGEFS=false
 INSTALL_APP_CSF=false
+INSTALL_APP_CPGUARD=false
+INSTALL_APP_JETBACKUP=false
 SUBDOMAIN="cpanel.elastika.pe"
 LICENCE_CLOUDLINUX=""
 CONFIGURE_YACHAY_SCRIPT=false
@@ -19,6 +21,16 @@ read -r SUBDOMAIN_IN
 
 if [[ ! $SUBDOMAIN_IN =~ $reg_subdomain ]]; then
     SUBDOMAIN=$SUBDOMAIN_IN
+fi
+
+# CPGUARD APP
+
+printf "Install CPGUARD [y/N]: "
+
+read -r HAS_INSTALL_CPGUARD
+
+if [ "$HAS_INSTALL_CPGUARD" = "y" ] || [ "$HAS_INSTALL_CPGUARD" = "Y" ] ; then
+    INSTALL_APP_CPGUARD=true
 fi
 
 # CSF APP
@@ -52,6 +64,17 @@ if [ "$HAS_INSTALL_INSTALLATRON" = "y" ] || [ "$HAS_INSTALL_INSTALLATRON" = "Y" 
     INSTALL_APP_INSTALLATRON=true
 fi
 
+# JETBACKUP APP
+
+printf "Install JETBACKUP [y/N]: "
+
+read -r HAS_INSTALL_JETBACKUP
+
+if [ "$HAS_INSTALL_JETBACKUP" = "y" ] || [ "$HAS_INSTALL_JETBACKUP" = "Y" ] ; then
+    INSTALL_APP_JETBACKUP=true
+fi
+
+
 # CLOUDLINUX APP
 
 printf "Install CLOUDLINUX [y/N]: "
@@ -82,15 +105,6 @@ if [ "$HAS_INSTALL_CLOUDLINUX" = "y" ] || [ "$HAS_INSTALL_CLOUDLINUX" = "Y" ] ; 
     INSTALL_APP_CLOUDLINUX=true
 fi
 
-
-echo $SUBDOMAIN
-echo $INSTALL_APP_CSF
-echo $INSTALL_APP_INSTALLATRON
-echo $INSTALL_APP_ACRONIS
-echo $INSTALL_APP_CLOUDLINUX
-echo $LICENCE_CLOUDLINUX
-echo $INSTALL_APP_CAGEFS
-
 echo "SUBDOMAIN=$SUBDOMAIN" >> .env
 echo "LICENCE_CLOUDLINUX=$LICENCE_CLOUDLINUX" >> .env
 
@@ -108,7 +122,16 @@ chmod +x whm.sh
 
 ./whm.sh
 
-# 3. run csf
+# 3. run CPGUARDA
+if [ "$INSTALL_APP_CPGUARD" = true ] ; then
+    wget https://raw.githubusercontent.com/oscarvrx/cloud-init/master/centos7/whm/cpguard.sh
+
+    chmod +x cpguard.sh
+
+    ./cpguard.sh
+fi
+
+# 4. run csf
 if [ "$INSTALL_APP_CSF" = true ] ; then
     wget https://raw.githubusercontent.com/oscarvrx/cloud-init/master/centos7/whm/csf.sh
 
@@ -117,7 +140,7 @@ if [ "$INSTALL_APP_CSF" = true ] ; then
     ./csf.sh
 fi
 
-# 4. run acronis
+# 5. run acronis
 if [ "$INSTALL_APP_ACRONIS" = true ] ; then
     wget https://raw.githubusercontent.com/oscarvrx/cloud-init/master/centos7/whm/acronis.sh
 
@@ -126,7 +149,7 @@ if [ "$INSTALL_APP_ACRONIS" = true ] ; then
     ./acronis.sh
 fi
 
-# 5. run csfconfig
+# 6. run csfconfig
 if [ "$INSTALL_APP_CSF" = true ] ; then
     wget https://raw.githubusercontent.com/oscarvrx/cloud-init/master/centos7/whm/csf.sh
 
@@ -135,7 +158,7 @@ if [ "$INSTALL_APP_CSF" = true ] ; then
     ./csf.sh
 fi
 
-# 6. run installatron
+# 7. run installatron
 if [ "$INSTALL_APP_INSTALLATRON" = true ] ; then
     wget https://raw.githubusercontent.com/oscarvrx/cloud-init/master/centos7/whm/installatron.sh
 
@@ -144,14 +167,23 @@ if [ "$INSTALL_APP_INSTALLATRON" = true ] ; then
     ./installatron.sh
 fi
 
-# 7. run finish cpanel
+# 8. run jetbackup
+if [ "$INSTALL_APP_JETBACKUP" = true ] ; then
+    wget https://raw.githubusercontent.com/oscarvrx/cloud-init/master/centos7/whm/jetbackup4.sh
+
+    chmod +x jetbackup4.sh
+
+    ./jetbackup4.sh
+fi
+
+# 9. run finish cpanel
 wget https://raw.githubusercontent.com/oscarvrx/cloud-init/master/centos7/whm/finish.sh
 
 chmod +x finish.sh
 
 ./finish.sh
 
-# 8. run cloudlinux
+# 10. run cloudlinux
 if [ "$INSTALL_APP_CLOUDLINUX" = true ] ; then
     wget https://raw.githubusercontent.com/oscarvrx/cloud-init/master/centos7/whm/cloudlinux.sh
 
@@ -160,7 +192,7 @@ if [ "$INSTALL_APP_CLOUDLINUX" = true ] ; then
     ./cloudlinux.sh
 fi
 
-# 9. run cageFs
+# 11. run cageFs
 if [ "$INSTALL_APP_CAGEFS" = true ] ; then
     wget https://raw.githubusercontent.com/oscarvrx/cloud-init/master/centos7/whm/cagefs.sh
 
@@ -169,9 +201,9 @@ if [ "$INSTALL_APP_CAGEFS" = true ] ; then
     ./cagefs.sh
 fi
 
-# 10. configure yachay script
+# 12. configure yachay script
 wget https://raw.githubusercontent.com/oscarvrx/cloud-init/master/centos7/whm/config-yachay.sh
 
 chmod +x config-yachay.sh
 
-./config-yachay.sh
+# ./config-yachay.sh
